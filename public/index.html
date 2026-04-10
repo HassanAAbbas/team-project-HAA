@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hassan's Store</title>
+</head>
+<body>
+
+<h1>Hassan's Store</h1>
+
+<button onclick="loadProducts()">Load Products</button>
+
+<ul id="list"></ul>
+
+<script>
+async function loadProducts() {
+  const res = await fetch('/products');
+  const data = await res.json();
+
+  const list = document.getElementById('list');
+  list.innerHTML = '';
+
+  data.forEach(p => {
+    const li = document.createElement('li');
+    li.textContent = p.productName + " - $" + p.price;
+    list.appendChild(li);
+  });
+}
+</script>
+
+</body>
+</html>
