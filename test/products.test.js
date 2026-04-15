@@ -1,14 +1,19 @@
 const request = require('supertest');
 const app = require('../server/server');
 
-describe('GET /products', () => {
-  it('should return all products', async () => {
-    const res = await request(app).get('/products');
+(async () => {
+  const email = "abou0228@algonquinlive.com";
+  const testName = "getAll to show all product";
 
-    if (res.status === 200) {
-      console.log('PASSED');
-    } else {
-      console.log('FAILED');
-    }
-  });
-});
+  try {
+    const res = await request(app).get('/products');
+    const status = res.status;
+    const result = status === 200 ? "PASSED" : "FAILED";
+
+    console.log(`${email} - ${testName} - ${status} - ${result}`);
+  } catch (err) {
+    console.log(`${email} - ${testName} - ERROR - FAILED`);
+  }
+
+  process.exit();
+})();

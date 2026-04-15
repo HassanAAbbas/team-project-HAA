@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const product = await Product.findOne({
-      productId: req.params.id   // keep as string
+      productId: req.params.id
     });
 
     res.json(product);
